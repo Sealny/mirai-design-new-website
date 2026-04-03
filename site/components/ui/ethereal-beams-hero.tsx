@@ -1,7 +1,7 @@
 'use client'
 
 import type React from "react"
-import { forwardRef, useImperativeHandle, useEffect, useRef, useMemo, useState, type FC, type ReactNode } from "react"
+import { forwardRef, useImperativeHandle, useEffect, useRef, useMemo, useState, type FC, type ReactNode, Suspense } from "react"
 import * as THREE from "three"
 import { Canvas, useFrame } from "@react-three/fiber"
 import { PerspectiveCamera } from "@react-three/drei"
@@ -12,87 +12,20 @@ import { NAV_HREFS, LOGO } from "@/content/site"
 import type { Lang } from "@/types/i18n"
 
 // ============================================================================
-// SHADERS & 3D SETUP
+// PERFORMANCE: Lazy load Three.js components
 // ============================================================================
 
-type UniformValue = THREE.IUniform<unknown> | unknown
-
-interface ExtendMaterialConfig {
-  header: string
-  vertexHeader?: string
-  fragmentHeader?: string
-  material?: THREE.MeshPhysicalMaterialParameters & { fog?: boolean }
-  uniforms?: Record<string, UniformValue>
-  vertex?: Record<string, string>
-  fragment?: Record<string, string>
-}
-
-type ShaderWithDefines = THREE.ShaderLibShader & {
-  defines?: Record<string, string | number | boolean>
-}
-
-function extendMaterial<T extends THREE.Material = THREE.Material>(
-  BaseMaterial: new (params?: THREE.MaterialParameters) => T,
-  cfg: ExtendMaterialConfig,
-): THREE.ShaderMaterial {
-  const physical = THREE.ShaderLib.physical as ShaderWithDefines
-  const { vertexShader: baseVert, fragmentShader: baseFrag, uniforms: baseUniforms } = physical
-  const baseDefines = physical.defines ?? {}
-
-  const uniforms: Record<string, THREE.IUniform> = THREE.UniformsUtils.clone(baseUniforms)
-
-  const defaults = new BaseMaterial(cfg.material || {}) as T & {
-    color?: THREE.Color
-    roughness?: number
-    metalness?: number
-    envMap?: THREE.Texture
-    envMapIntensity?: number
-  }
-
-  if (defaults.color) uniforms.diffuse.value = defaults.color
-  if ("roughness" in defaults) uniforms.roughness.value = defaults.roughness
-  if ("metalness" in defaults) uniforms.metalness.value = defaults.metalness
-  if ("envMap" in defaults) uniforms.envMap.value = defaults.envMap
-  if ("envMapIntensity" in defaults) uniforms.envMapIntensity.value = defaults.envMapIntensity
-
-  Object.entries(cfg.uniforms ?? {}).forEach(([key, u]) => {
-    uniforms[key] =
-      u !== null && typeof u === "object" && "value" in u
-        ? (u as THREE.IUniform<unknown>)
-        : ({ value: u } as THREE.IUniform<unknown>)
-  })
-
-  let vert = `${cfg.header}
-${cfg.vertexHeader ?? ""}
-${baseVert}`
-  let frag = `${cfg.header}
-${cfg.fragmentHeader ?? ""}
-${baseFrag}`
-
-  for (const [inc, code] of Object.entries(cfg.vertex ?? {})) {
-    vert = vert.replace(inc, `${inc}
-${code}`)
-  }
-
-  for (const [inc, code] of Object.entries(cfg.fragment ?? {})) {
-    frag = frag.replace(inc, `${inc}
-${code}`)
-  }
-
-  const mat = new THREE.ShaderMaterial({
-    defines: { ...baseDefines },
-    uniforms,
-    vertexShader: vert,
-    fragmentShader: frag,
-    lights: true,
-    fog: !!cfg.material?.fog,
-  })
-
-  return mat
-}
-
 const CanvasWrapper: FC<{ children: ReactNode }> = ({ children }) => (
-  <Canvas dpr={[1, 2]} frameloop="always" className="w-full h-full relative">
+  <Canvas 
+    dpr={[1, 1.5]} 
+    frameloop="always" 
+    className="w-full h-full relative"
+    gl={{ 
+      antialias: false, 
+      alpha: false,
+      powerPreference: "high-performance",
+    }}
+  >
     {children}
   </Canvas>
 )
@@ -105,7 +38,7 @@ const hexToNormalizedRGB = (hex: string): [number, number, number] => {
   return [r / 255, g / 255, b / 255]
 }
 
-const noise = `
+const noiseShader = `
 float random (in vec2 st) {
     return fract(sin(dot(st.xy, vec2(12.9898,78.233))) * 43758.5453123);
 }
@@ -225,6 +158,41 @@ function createStackedPlanesBufferGeometry(n: number, width: number, height: num
   return geometry
 }
 
+const extendMaterial = (BaseMaterial: typeof THREE.MeshStandardMaterial, cfg: any) => {
+  const physical = THREE.ShaderLib.physical as any
+  const { vertexShader: baseVert, fragmentShader: baseFrag, uniforms: baseUniforms } = physical
+  const baseDefines = physical.defines ?? {}
+  const uniforms: any = THREE.UniformsUtils.clone(baseUniforms)
+  const defaults = new BaseMaterial(cfg.material || {}) as any
+
+  if (defaults.color) uniforms.diffuse.value = defaults.color
+  if ("roughness" in defaults) uniforms.roughness.value = defaults.roughness
+  if ("metalness" in defaults) uniforms.metalness.value = defaults.metalness
+
+  Object.entries(cfg.uniforms ?? {}).forEach(([key, u]: [string, any]) => {
+    uniforms[key] = u !== null && typeof u === "object" && "value" in u ? u : { value: u }
+  })
+
+  let vert = `${cfg.header}\n${cfg.vertexHeader ?? ""}\n${baseVert}`
+  let frag = `${cfg.header}\n${cfg.fragmentHeader ?? ""}\n${baseFrag}`
+
+  for (const [inc, code] of Object.entries(cfg.vertex ?? {})) {
+    vert = vert.replace(inc, `${inc}\n${code}`)
+  }
+  for (const [inc, code] of Object.entries(cfg.fragment ?? {})) {
+    frag = frag.replace(inc, `${inc}\n${code}`)
+  }
+
+  return new THREE.ShaderMaterial({
+    defines: { ...baseDefines },
+    uniforms,
+    vertexShader: vert,
+    fragmentShader: frag,
+    lights: true,
+    fog: !!cfg.material?.fog,
+  })
+}
+
 const MergedPlanes = forwardRef<
   THREE.Mesh<THREE.BufferGeometry, THREE.ShaderMaterial>,
   { material: THREE.ShaderMaterial; width: number; count: number; height: number }
@@ -241,7 +209,7 @@ const DirLight: FC<{ position: [number, number, number]; color: string }> = ({ p
   const dir = useRef<THREE.DirectionalLight>(null!)
   useEffect(() => {
     if (!dir.current) return
-    const cam = dir.current.shadow.camera as THREE.Camera & { top: number; bottom: number; left: number; right: number; far: number }
+    const cam = dir.current.shadow.camera as any
     cam.top = 24; cam.bottom = -24; cam.left = -24; cam.right = 24; cam.far = 64
     dir.current.shadow.bias = -0.004
   }, [])
@@ -256,7 +224,7 @@ const Beams: FC<{ beamWidth?: number; beamHeight?: number; beamNumber?: number; 
     header: `
   varying vec3 vEye; varying float vNoise; varying vec2 vUv; varying vec3 vPosition;
   uniform float time; uniform float uSpeed; uniform float uNoiseIntensity; uniform float uScale;
-  ${noise}`,
+  ${noiseShader}`,
     vertexHeader: `
   float getPos(vec3 pos) {
     vec3 noisePos = vec3(pos.x * 0., pos.y - uv.y, pos.z + time * uSpeed * 3.) * uScale;
@@ -285,9 +253,9 @@ const Beams: FC<{ beamWidth?: number; beamHeight?: number; beamNumber?: number; 
     material: { fog: true },
     uniforms: {
       diffuse: new THREE.Color(...hexToNormalizedRGB("#000000")),
-      time: { shared: true, mixed: true, linked: true, value: 0 },
+      time: { value: 0 },
       roughness: 0.3, metalness: 0.3,
-      uSpeed: { shared: true, mixed: true, linked: true, value: speed },
+      uSpeed: { value: speed },
       envMapIntensity: 10, uNoiseIntensity: noiseIntensity, uScale: scale,
     },
   }), [speed, noiseIntensity, scale])
@@ -335,6 +303,11 @@ export default function EtherealBeamsHero() {
   const { t, lang, setLang, availableLangs } = useI18n()
   const [langOpen, setLangOpen] = useState(false)
   const [currentSloganIndex, setCurrentSloganIndex] = useState(0)
+  const [isLoaded, setIsLoaded] = useState(false)
+
+  useEffect(() => {
+    setIsLoaded(true)
+  }, [])
 
   useEffect(() => {
     if (!langOpen) return
@@ -351,7 +324,9 @@ export default function EtherealBeamsHero() {
   return (
     <div className="relative min-h-screen w-full overflow-hidden bg-black">
       <div className="absolute inset-0 z-0">
-        <Beams beamWidth={2.5} beamHeight={18} beamNumber={15} lightColor="#ffffff" speed={2.5} noiseIntensity={2} scale={0.15} rotation={43} />
+        {isLoaded && (
+          <Beams beamWidth={2.5} beamHeight={18} beamNumber={15} lightColor="#ffffff" speed={2.5} noiseIntensity={2} scale={0.15} rotation={43} />
+        )}
       </div>
 
       <nav className="relative z-20 w-full">
