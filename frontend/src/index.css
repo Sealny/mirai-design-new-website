@@ -1,0 +1,207 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-page: #0a0a0b;
+  --bg-card: #141416;
+  --bg-elevated: #1a1a1d;
+  --text-primary: #ffffff;
+  --text-secondary: #a1a1a6;
+  --text-muted: #6b6b70;
+  --accent-primary: #0066ff;
+  --accent-hover: #0052cc;
+  --accent-light: rgba(0, 102, 255, 0.1);
+  --border-subtle: rgba(255, 255, 255, 0.06);
+  --border-medium: rgba(255, 255, 255, 0.1);
+  --border-strong: rgba(255, 255, 255, 0.2);
+  
+  /* Unified grid system - ultra subtle */
+  --grid-size: 64px;
+  --grid-color: rgba(255, 255, 255, 0.018);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background-color: var(--bg-page);
+  color: var(--text-primary);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ============================================
+   UNIFIED BACKGROUND SYSTEM
+   ============================================ */
+
+/* Global grid - ultra subtle checkerboard texture */
+.grid-global {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image: 
+    linear-gradient(var(--grid-color) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+  background-size: var(--grid-size) var(--grid-size);
+}
+
+/* ============================================
+   SECTION SYSTEM
+   ============================================ */
+
+.section-base {
+  position: relative;
+  background: transparent;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-page);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-medium);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--border-strong);
+}
+
+/* Focus states - Accessibility */
+:focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 2px;
+}
+
+/* Selection */
+::selection {
+  background: rgba(0, 102, 255, 0.3);
+  color: white;
+}
+
+@layer components {
+  .container-main {
+    @apply max-w-container mx-auto px-4 md:px-6;
+  }
+  
+  .section-padding {
+    @apply py-16 md:py-32;
+  }
+  
+  .card-base {
+    @apply bg-bg-card border border-border-subtle rounded-card transition-all duration-300;
+  }
+  
+  .card-hover {
+    @apply hover:-translate-y-1 hover:border-border-medium;
+  }
+}
+
+/* ============================================
+   ANIMATION OPTIMIZATIONS
+   Prevent flickering on scroll-triggered animations
+   ============================================ */
+
+/* Global GPU acceleration for all motion elements */
+[data-framer-motion] {
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+/* Smooth animations for motion elements */
+.motion-element {
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+/* Reduce paint during animations */
+.animate-on-scroll {
+  will-change: transform, opacity;
+  transform: translateZ(0);
+}
+
+/* Prevent flickering on animated cards */
+.card-base {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* Ensure images don't flicker during animations */
+img {
+  transform: translateZ(0);
+}
+
+/* ============================================
+   MOBILE LAYOUT FIXES
+   ============================================ */
+
+@media (max-width: 767px) {
+  /* Consistent vertical spacing */
+  .section-padding {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+  
+  /* Stack flex items vertically with consistent gap */
+  .flex-wrap {
+    gap: 1rem;
+  }
+  
+  /* Ensure text doesn't get cut off */
+  h1, h2, h3 {
+    word-break: break-word;
+  }
+}
+
+/* ============================================
+   ACCESSIBILITY - Reduced Motion
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ============================================
+   UTILITY CLASSES
+   ============================================ */
+
+/* Screen reader only - Accessibility */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}

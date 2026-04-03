@@ -1,0 +1,488 @@
+{
+  "nav": {
+    "home": "Home",
+    "work": "Work",
+    "packages": "Pricing",
+    "process": "Process",
+    "about": "About",
+    "contact": "Contact"
+  },
+  "hero": {
+    "headline": "Websites that make people click.",
+    "subheadline": "We design and ship modern websites for businesses worldwide. See the demo first. Pay later.",
+    "cta_demo": "Get a free demo",
+    "cta_packages": "See pricing",
+    "demo_label": "Demo preview"
+  },
+  "proof": {
+    "label": "Typical results clients usually see",
+    "faster_load": "Faster load times",
+    "better_mobile": "Better mobile experience",
+    "clearer_cta": "Clearer calls-to-action",
+    "more_enquiries": "More inbound enquiries"
+  },
+  "trust": {
+    "headline": "Built for speed, mobile, and Google basics.",
+    "fast_turnaround": "Fast turnaround",
+    "mobile_first": "Mobile-first",
+    "seo_ready": "SEO-ready",
+    "booking_focused": "Booking-focused",
+    "easy_updates": "Easy updates",
+    "launch_support": "Launch support",
+    "perks": {
+      "demo_first": "Demo in 24-48h",
+      "no_upfront": "No risk demo",
+      "subscription_model": "Flexible subscription",
+      "global_clients": "Clients worldwide"
+    }
+  },
+  "what_we_build": {
+    "headline": "What we build",
+    "one_page": {
+      "title": "One-page site",
+      "description": "Perfect for simple businesses needing a strong online presence."
+    },
+    "business": {
+      "title": "Business website",
+      "description": "Multi-page sites for established businesses with more to say."
+    },
+    "landing": {
+      "title": "Landing pages",
+      "description": "High-converting pages for campaigns and promotions."
+    }
+  },
+  "before_after": {
+    "headline": "The transformation",
+    "before": "Before",
+    "before_desc": "Messy, slow, confusing",
+    "after": "After",
+    "after_desc": "Fast, clear, bookable",
+    "outcomes": [
+      "Improved page speed scores",
+      "Mobile-optimized layouts",
+      "Clear booking integration",
+      "Professional visual design",
+      "Easy content management"
+    ]
+  },
+  "process": {
+    "headline": "How it works",
+    "subtitle": "Our demo-first approach",
+    "step1": {
+      "title": "Quick call",
+      "description": "10-15 min call to understand your business and goals."
+    },
+    "step2": {
+      "title": "We build a demo",
+      "description": "Demo in 24-48 hours with your brand styling applied."
+    },
+    "step3": {
+      "title": "You send materials",
+      "description": "Send us your content via our simple checklist."
+    },
+    "step4": {
+      "title": "We launch",
+      "description": "Launch, testing, and ongoing subscription maintenance."
+    }
+  },
+  "demos": {
+    "headline": "Featured demos",
+    "view_demo": "View demo",
+    "request_similar": "Request similar",
+    "demo_preview": "Demo preview",
+    "view_all": "View all work",
+    "demo1": {
+      "name": "Lumière Hair Salon",
+      "location": "Warsaw, Poland",
+      "tags": ["Hair Salon", "Booking"]
+    },
+    "demo2": {
+      "name": "VoltEV Auto Repair",
+      "location": "Berlin, Germany",
+      "tags": ["Auto", "Services"]
+    },
+    "demo3": {
+      "name": "SaaS Dashboard",
+      "location": "Vienna, Austria",
+      "tags": ["SaaS", "Dashboard"]
+    }
+  },
+  "faq": {
+    "headline": "Frequently asked questions",
+    "q1": "What do you need from me?",
+    "a1": "Your logo, brand colors (if any), text content, and images. We'll guide you through everything with a simple checklist.",
+    "q2": "How fast can you deliver?",
+    "a2": "Demo in 24-48 hours. Full site launch typically within 1-2 weeks depending on how quickly you provide materials.",
+    "q3": "Can you connect Booksy or other booking tools?",
+    "a3": "Yes. We add clear \"Book now\" buttons linking to your booking page. If your platform provides an embed widget, we can embed it as an add-on. We can link to booking tools. Embeds depend on provider. Custom integrations are scoped separately.",
+    "q4": "What's included in maintenance?",
+    "a4": "We keep the site online, secure, and updated (hosting + SSL, backups, essential updates). Content changes are available within the included monthly time.",
+    "q5": "Can you do multiple languages?",
+    "a5": "Yes, we build fully localized sites with language switchers. Additional languages are available as an add-on.",
+    "q6": "Can you migrate my existing site?",
+    "a6": "We can preserve your content while giving you a fresh, modern design. Migration is available as an add-on.",
+    "q7": "What if I don't like the demo?",
+    "a7": "No obligation. If the demo doesn't fit your vision, you pay nothing."
+  },
+  "final_cta": {
+    "headline": "Want to see your business as a modern website?",
+    "name": "Name",
+    "business": "Business name",
+    "links": "Current site or inspiration links",
+    "goal": "Your main goal",
+    "contact": "Preferred contact method",
+    "submit": "Send request",
+    "whatsapp": "WhatsApp",
+    "email": "Email",
+    "book_call": "Book a call"
+  },
+  "footer": {
+    "tagline": "Modern websites for businesses worldwide.",
+    "pages": "Pages",
+    "legal": "Legal",
+    "privacy": "Privacy",
+    "terms": "Terms",
+    "copyright": "© 2025 Mirai Design. All rights reserved."
+  },
+  "work": {
+    "headline": "Our work",
+    "subheadline": "Demo previews showcasing what we build",
+    "view_demo": "View live demo",
+    "coming_soon": "Coming soon",
+    "desc_salon": "Clear services and booking flow",
+    "desc_auto": "Mobile-first portfolio showcase",
+    "desc_saas": "Streamlined business operations",
+    "desc_tattoo": "Gallery-focused portfolio",
+    "desc_fitness": "Class schedule and membership",
+    "desc_cleaning": "Service overview and booking",
+    "filters": {
+      "all": "All",
+      "beauty": "Beauty",
+      "barber": "Barber",
+      "physio": "Physio",
+      "tattoo": "Tattoo",
+      "fitness": "Fitness",
+      "home": "Home services"
+    }
+  },
+  "pricing": {
+    "headline": "Simple, transparent pricing",
+    "subheadline": "Subscription websites for appointment-based businesses. Demo first, no risk.",
+    "recommended": "Recommended",
+    "per_month": "/month",
+    "setup_fee": "Setup fee",
+    "minimum_term": "Minimum term",
+    "months": "months",
+    "included_updates": "Included updates",
+    "minutes_month": "min/month of content updates",
+    "buyout": "Early exit buyout",
+    "get_started": "Get started",
+    "compare": "Compare plans",
+    "currency_note": "Prices shown in local currency for convenience. Final pricing depends on billing country, taxes, and scope.",
+    "plans": {
+      "start": {
+        "name": "Start",
+        "type": "Budget option",
+        "price_pln": "149",
+        "price_eur": "39",
+        "price_gbp": "47",
+        "price_cny": "299",
+        "price_jpy": "5,900",
+        "setup_pln": "99",
+        "setup_eur": "29",
+        "setup_gbp": "35",
+        "setup_cny": "199",
+        "setup_jpy": "3,900",
+        "term": "30",
+        "updates": "15"
+      },
+      "standard": {
+        "name": "Standard",
+        "type": "Full package",
+        "price_pln": "199",
+        "price_eur": "49",
+        "price_gbp": "59",
+        "price_cny": "399",
+        "price_jpy": "7,900",
+        "setup_pln": "99",
+        "setup_eur": "29",
+        "setup_gbp": "35",
+        "setup_cny": "199",
+        "setup_jpy": "3,900",
+        "term": "24",
+        "updates": "30"
+      },
+      "pro": {
+        "name": "Pro",
+        "type": "Standard + Monthly Growth (bundled)",
+        "price_pln": "499",
+        "price_eur": "128",
+        "price_gbp": "154",
+        "price_cny": "898",
+        "price_jpy": "17,800",
+        "setup_pln": "99",
+        "setup_eur": "29",
+        "setup_gbp": "35",
+        "setup_cny": "199",
+        "setup_jpy": "3,900",
+        "term": "24",
+        "updates": "45",
+        "includes_note": "Includes Standard plan + Monthly Growth add-on"
+      }
+    },
+    "included": {
+      "headline": "What's included",
+      "setup": [
+        "Launch-ready site using proven templates",
+        "Brand styling (logo, colors, typography)",
+        "Content setup with your materials",
+        "Booking/contact routing (Booksy link, phone, WhatsApp)",
+        "Basic click tracking (book/call/message)",
+        "Publishing + mobile testing"
+      ],
+      "monthly": [
+        "Hosting + SSL certificate",
+        "Site monitoring",
+        "Regular backups",
+        "Security patches and essential updates",
+        "Minor content updates within time limit"
+      ]
+    },
+    "excluded": {
+      "headline": "Not included (available as add-ons or hourly)",
+      "items": [
+        "New pages/sections after structure approval",
+        "Layout redesign or rebranding",
+        "Custom integrations (CRM, payments, advanced booking)",
+        "E-commerce functionality",
+        "Advanced SEO, link building, ads management",
+        "Ongoing content creation, photography, video",
+        "Third-party troubleshooting"
+      ]
+    },
+    "extra_edits": {
+      "headline": "Extra edits",
+      "description": "Edits beyond included monthly time are billed in 15-minute blocks:",
+      "price_pln": "50 PLN / 15 min",
+      "price_eur": "€25 / 15 min",
+      "price_gbp": "£30 / 15 min",
+      "price_cny": "¥99 / 15 min",
+      "price_jpy": "¥2,500 / 15 min",
+      "note": "Unused included minutes do not roll over. One consolidated request per month preferred."
+    },
+    "hourly": {
+      "headline": "Non-standard work",
+      "description": "Used only for requests outside plans and listed add-ons:",
+      "price_pln": "200 PLN/hour",
+      "price_eur": "€50/hour",
+      "price_gbp": "£60/hour",
+      "price_cny": "¥350/hour",
+      "price_jpy": "¥8,000/hour"
+    },
+    "addons": {
+      "headline": "Add-ons",
+      "items": [
+        {
+          "name": "Additional language version",
+          "price_pln": "590",
+          "price_eur": "129",
+          "price_gbp": "155",
+          "price_cny": "999",
+          "price_jpy": "19,900"
+        },
+        {
+          "name": "Additional landing page",
+          "price_pln": "390",
+          "price_eur": "89",
+          "price_gbp": "107",
+          "price_cny": "699",
+          "price_jpy": "12,900"
+        },
+        {
+          "name": "Local SEO pages pack (5 pages)",
+          "price_pln": "1,200",
+          "price_eur": "279",
+          "price_gbp": "335",
+          "price_cny": "2,199",
+          "price_jpy": "39,900"
+        },
+        {
+          "name": "Copywriting (interview + writing)",
+          "price_pln": "from 800",
+          "price_eur": "from 199",
+          "price_gbp": "from 239",
+          "price_cny": "from 1,299",
+          "price_jpy": "from 29,900"
+        },
+        {
+          "name": "Photo selection + optimization",
+          "price_pln": "300",
+          "price_eur": "79",
+          "price_gbp": "95",
+          "price_cny": "499",
+          "price_jpy": "9,900"
+        },
+        {
+          "name": "Google Business Profile setup",
+          "price_pln": "400",
+          "price_eur": "99",
+          "price_gbp": "119",
+          "price_cny": "699",
+          "price_jpy": "12,900"
+        },
+        {
+          "name": "Domain connection support",
+          "price_pln": "250",
+          "price_eur": "69",
+          "price_gbp": "83",
+          "price_cny": "399",
+          "price_jpy": "7,900"
+        },
+        {
+          "name": "Site migration",
+          "price_pln": "from 600",
+          "price_eur": "from 149",
+          "price_gbp": "from 179",
+          "price_cny": "from 999",
+          "price_jpy": "from 19,900"
+        },
+        {
+          "name": "Email forwarding setup",
+          "price_pln": "150",
+          "price_eur": "39",
+          "price_gbp": "47",
+          "price_cny": "199",
+          "price_jpy": "4,900"
+        },
+        {
+          "name": "Accessibility baseline checks",
+          "price_pln": "500",
+          "price_eur": "129",
+          "price_gbp": "155",
+          "price_cny": "899",
+          "price_jpy": "17,900"
+        },
+        {
+          "name": "Performance audit + optimization",
+          "price_pln": "600",
+          "price_eur": "149",
+          "price_gbp": "179",
+          "price_cny": "999",
+          "price_jpy": "19,900"
+        },
+        {
+          "name": "Monthly Growth add-on",
+          "price_pln": "300/mo",
+          "price_eur": "79/mo",
+          "price_gbp": "95/mo",
+          "price_cny": "499/mo",
+          "price_jpy": "9,900/mo",
+          "description": "Extra 15-min update block + monthly mini-report"
+        }
+      ]
+    },
+    "process": {
+      "headline": "How it works",
+      "steps": [
+        "10-15 min discovery call",
+        "Demo in 24-48 hours",
+        "You send materials via checklist",
+        "Launch + testing",
+        "Ongoing subscription maintenance"
+      ]
+    },
+    "checklist": {
+      "headline": "What we need from you",
+      "items": [
+        "Business name, address, opening hours",
+        "Services + prices",
+        "5-15 photos",
+        "Logo (if available)",
+        "Booksy link or preferred booking method"
+      ]
+    },
+    "terms": {
+      "headline": "Terms",
+      "structure_approved": {
+        "title": "Structure approval",
+        "description": "After you approve page structure, adding new pages/sections or changing layout is out of scope and billable."
+      },
+      "minor_updates": {
+        "title": "Minor content updates include",
+        "items": [
+          "Opening hours, phone, email, address",
+          "Service list/pricing edits (no new structure)",
+          "Replace up to 3 images/month",
+          "Update links (Booksy/Instagram/Maps)",
+          "Short notice text within existing sections"
+        ]
+      },
+      "cancellation": {
+        "title": "Cancellation",
+        "description": "Minimum term applies. After minimum term: month-to-month, cancel anytime with 30 days notice. Early exit during minimum term requires buyout fee."
+      },
+      "third_party": {
+        "title": "Third-party platforms",
+        "description": "Third-party platforms (e.g. booking tools, email providers) are managed by their providers. We assist with links and setup within scope."
+      },
+      "third_party_costs": {
+        "title": "Third-party costs",
+        "description": "Not included: domain registration, email hosting, paid plugins, stock photos, ad spend."
+      },
+      "template_based": {
+        "title": "Template-based delivery",
+        "description": "We use proven templates for speed and predictable pricing. We customize brand and content within that system."
+      },
+      "invoicing": {
+        "title": "Invoicing",
+        "description": "We invoice as an Estonia-registered company. Billing details are confirmed before invoicing."
+      },
+      "no_guarantees": {
+        "title": "Results disclaimer",
+        "description": "Results depend on many factors. We follow proven best practices, but cannot guarantee specific outcomes."
+      },
+      "setup_note": "Setup fee applies once per site."
+    }
+  },
+  "process_page": {
+    "headline": "Our process",
+    "subheadline": "Demo-first. No surprises.",
+    "approach_headline": "The demo-first approach",
+    "approach_desc": "We build your site before you commit. See it, feel it, then decide.",
+    "client_inputs": "What we need from you",
+    "launch_checklist": "Launch checklist",
+    "ownership": "Client owns their brand assets and content they provide. Site operates under subscription with ongoing maintenance. Domain and third-party accounts remain client's responsibility. Optional handover available as scoped add-on."
+  },
+  "about_page": {
+    "headline": "About Mirai Design",
+    "intro": "We're a focused team building websites that work. No fluff, no delays.",
+    "values_headline": "Our values",
+    "clarity": "Clarity",
+    "clarity_desc": "Simple communication. No jargon. You always know what's happening.",
+    "speed": "Speed",
+    "speed_desc": "Fast delivery without cutting corners. We value your time.",
+    "reliability": "Reliability",
+    "reliability_desc": "We deliver what we promise. Every time.",
+    "different_headline": "What makes us different",
+    "demo_first": "Demo-first selling",
+    "demo_first_desc": "See your site before paying a cent.",
+    "performance": "Performance-first builds",
+    "performance_desc": "Every site is optimized for speed and search.",
+    "systems": "Systems for fast delivery",
+    "systems_desc": "Proven workflows that get you live faster."
+  },
+  "contact_page": {
+    "headline": "Let's talk",
+    "subheadline": "Ready to start? We usually respond within 3 hours.",
+    "location": "Global, remote",
+    "response_time": "Response within 3h"
+  },
+  "privacy_page": {
+    "headline": "Privacy Policy",
+    "last_updated": "Last updated: January 2025"
+  },
+  "terms_page": {
+    "headline": "Terms of Service",
+    "last_updated": "Last updated: January 2025"
+  }
+}
