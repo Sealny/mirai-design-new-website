@@ -1,0 +1,14 @@
+{
+  "name": "mirai-design-website",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "cd site && npm run dev",
+    "build": "cd site && npm run build",
+    "vercel-build": "cd site && npm run build",
+    "start": "cd site && npm run start"
+  },
+  "dependencies": {
+    "next": "16.2.2"
+  }
+}
