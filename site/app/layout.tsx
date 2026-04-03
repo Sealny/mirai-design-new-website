@@ -1,52 +1,37 @@
-import type { Metadata, Viewport } from 'next'
-import { LanguageProvider } from '@/lib/i18n/context'
-import './globals.css'
+import type { Metadata } from "next";
+import { Geist, Geist_Mono } from "next/font/google";
+import "./globals.css";
+import { SmoothScrollProvider } from "@/components/providers/smooth-scroll";
+
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
 
 export const metadata: Metadata = {
-  title: 'Mirai Design — Fast websites that convert.',
-  description:
-    'WaaS (Website-as-a-Service) for European B2B companies. Fast delivery, subscription model, conversion-focused design. Based in Tallinn, Estonia.',
-  keywords: [
-    'web design',
-    'WaaS',
-    'website subscription',
-    'B2B web design',
-    'Tallinn',
-    'Estonia',
-    'conversion design',
-  ],
-  authors: [{ name: 'MiraiWorks OÜ', url: 'https://miraidesign.studio' }],
-  creator: 'MiraiWorks OÜ',
-  openGraph: {
-    type: 'website',
-    locale: 'en_US',
-    url: 'https://miraidesign.studio',
-    title: 'Mirai Design — Fast websites that convert.',
-    description:
-      'WaaS for European B2B companies. Fast, conversion-focused websites on a subscription model.',
-    siteName: 'Mirai Design',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Mirai Design — Fast websites that convert.',
-    description:
-      'WaaS for European B2B companies. Fast, conversion-focused websites on a subscription model.',
-  },
-  robots: { index: true, follow: true },
-}
+  title: "MiraiDesign | Web Design Studio",
+  description: "Fast, conversion-focused websites for B2B companies. Subscription-based web design with 5-7 day delivery.",
+};
 
-export const viewport: Viewport = {
-  themeColor: '#ffffff',
-  width: 'device-width',
-  initialScale: 1,
-}
-
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   return (
     <html lang="en">
-      <body>
-        <LanguageProvider>{children}</LanguageProvider>
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      >
+        <SmoothScrollProvider>
+          {children}
+        </SmoothScrollProvider>
       </body>
     </html>
-  )
+  );
 }
